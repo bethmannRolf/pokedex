@@ -9,23 +9,25 @@ header {
     display: flex;
     justify-content: center;
     align-items: center;
+    background-color: blanchedalmond;
 }
 
 footer {
-    margin-top: 5px;
+  
     width: 100%;
-    height: 300px;
+    height: 200px;
     display: flex;
     justify-content: center;
     align-items: center;
+    background-color: rgb(214, 143, 102);
 }
 
 main {
-    background-image: url("/img/pokeball_background.jpg");
+    background-image: url("/img/pokemon_logo.jpg");
     background-size: cover; 
     background-repeat: repeat-y;
     background-position: center;
- height: 850px;
+    height: 850px;
     width: 100%;
     display: flex;
     flex-wrap: wrap;
@@ -36,13 +38,15 @@ main {
 .input-search-styling::placeholder{
     font-weight: bold;
     font-size: 16px;
+    
 }
 
 .input-search-styling{
-    padding-top: 6px;
+    padding-top: 8px;
     padding-right: 8px;
     padding-left: 6px;
     padding-bottom: 8px;
+    border-radius: 4px;
 }
 
 .load-more-button {
@@ -57,5 +61,19 @@ main {
 .load-more-pokemon-span{
     font-size: 16px;
     font-weight: 700;
+    color: white;
 }
 
+
+.load-more-button{
+    background-color: black;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transition: box-shadow 0.3s ease-in-out;
+}
+
+.load-more-button:hover{
+    cursor: pointer;
+    user-select: none;
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.4);
+  
+}
