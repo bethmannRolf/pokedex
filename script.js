@@ -1,5 +1,5 @@
 const BASE_URL = 'https://pokeapi.co/api/v2/';
-let url = 'https://pokeapi.co/api/v2/pokemon?limit=10&offset=0';
+let url = 'https://pokeapi.co/api/v2/pokemon?limit=20&offset=0';
 let ditto = 'https://pokeapi.co/api/v2/pokemon/ditto'; // Test
 
 let loadedPokemons = [];
@@ -23,7 +23,6 @@ function capitalizeFirstLetter(pokemonName) {
     return pokemonName.charAt(0).toUpperCase() + pokemonName.slice(1);
 }
 
-
 // Funktion, die die Pokémon-Namen lädt und anzeigt
 async function loadingPokemonNames() {
     let pokemonCards = document.getElementById('main-content');
@@ -34,43 +33,40 @@ async function loadingPokemonNames() {
             let pokemonName = loadedPokemons[i].name;
             pokemonName = capitalizeFirstLetter(pokemonName);
             let pokemonUrl = loadedPokemons[i].url;
-           
-            let pokemonTypes = loadedPokemons[i]
-
 
             // Daten aus dem bereits geladenen JSON verwenden
             let pokemonDetails = await getPokemonDetails(pokemonUrl);
+            
+            let pokemonTypes = pokemonDetails.types.map(typeInfo => typeInfo.type.name);
+            let firstType = pokemonTypes[0];  // Der erste Typ des Pokémon
+
             let pokemonHeight = pokemonDetails.height;
-            // let pokemonType = 
-            let pokeID = pokemonDetails.id
+            let pokeID = pokemonDetails.id;
             let pokemonImage = pokemonDetails.sprites.front_default;
 
-            console.log("Pokedetails", pokemonDetails)
-            
-            //Name done +initial
-            //ID Nummer
-            //Größe
-            //Typ 
-            //Bild done
+            console.log("Pokedetails", pokemonDetails);
 
             pokemonCards.innerHTML += `
-            <div class="whole-pokemon-card">
+            <div id="smallcard${i}" class="whole-pokemon-card ${firstType}">
                 <div class="upper-div-small-card">
                     <div class="pokemon-name-small-card">
                         <span class="pokemon-name-small-card-span">${pokemonName}</span>
                     </div>
                     <div class="pokemon-id-small-card">
-                        <span class="pokeID-small-card-span">Poke-ID:${pokeID} </span>
+                        <span class="pokeID-small-card-span">Poke-ID: ${pokeID} </span>
                     </div>
                 </div>
                 <div class="lower-div-small-card">
                     <div class="lower-small-card-left">
                         <div class="lower-left-small-height-div">
-                            <span class="lower-left-small-height">Height: ${pokemonHeight} feet </span>
+                            <span class="lower-left-small-height">Height: ${pokemonHeight * 10} cm  </span>
+                        </div>
+                        <div class="type-div-smallcard-styling" id="type-div-small-card">
+                            <span class="pokemon-type-small-card">Type: ${pokemonTypes.join(', ')}</span>
                         </div>
                     </div>
                     <div class="lower-small-card-right">
-                    <img class="pokemon-image-small-card" src="${pokemonImage}">
+                        <img class="pokemon-image-small-card" src="${pokemonImage}">
                     </div>
                 </div>
             </div>
@@ -81,15 +77,14 @@ async function loadingPokemonNames() {
     console.log(loadedPokemons);
 }
 
-
 async function getPokemonDetails(url) {
     let response = await fetch(url);
     let pokemonDetails = await response.json();
     return pokemonDetails;
 }
 
-async function renderLargeCards(){
-    
+async function renderLargeCards() {
+    // Hier kannst du deinen Code für große Karten hinzufügen
 }
 
 
