@@ -74,7 +74,6 @@ async function loadSmallPokemonCards() {
         }
     }
 
-    console.log(loadedPokemons);
 }
 
 async function getPokemonDetails(url) {
@@ -91,30 +90,77 @@ async function showLargeCard(i) {
     let pokemonUrl = loadedPokemons[i].url;
     let pokemonDetails = await getPokemonDetails(pokemonUrl);
     let pokemonHeight = pokemonDetails.height;
+    let pokemonTypes = pokemonDetails.types.map(typeInfo => typeInfo.type.name);
+    let firstType = pokemonTypes[0];  // Der erste Typ des Pokémon
+    console.log("First type large card", firstType)
+    let pokeID = pokemonDetails.id;
+    let pokemonImage = pokemonDetails.sprites.front_default;
 
     let singleLargeCard = document.getElementById('detailview-single-card');
     singleLargeCard.innerHTML = '';
 
     singleLargeCard.innerHTML = `
-    <div class="single-large-card-styling">
-
-    
+    <div class="single-large-card-styling ${firstType}">
+        <div class="close-section-large-card">
+            <img onclick="closeLargeCard()" class="close-button-large-card-styling" id="close-button-large-card" src="/img/close.svg">
+        </div>
+        <div class="pokemon-name-large-card-div">
+            <span class="pokemon-name-large-card-styling">${pokemonName}</span>
+        </div>
+        <div class="type-div-large-card">
+            <span class="id-span-large-card">Poke-ID: ${pokeID}</span>
+            <span class="type-span-large-card">Type: ${pokemonTypes.join(', ')}</span>
+            <span class="height-span large card">Height: ${pokemonHeight * 10} cm  </span>
+        </div>
+        <div class="image-div-large-card">
+            <img class="image-large-card" src="${pokemonImage}">
+        </div>
+        <div class="lower-section-large-card">
+            <div class="lower-large-card-flex-container">
+                <div class="about-div-large-card"> 
+                    <span id="about-large-card-id" onclick="renderAboutSection()" class="about-span-styling">About</span>
+                </div>    
+                <div>
+                    <span id="status-large-card-id" onclick="renderBaseStats()" class="stats-span-styling">Stats</span>
+                </div>
+            </div>
+            <div id="lower-information-large-card">  
+             
+            </div>
+        </div>
     </div>
     `
 }
 
+
+function closeLargeCard(){
+    removeDarkOverlay()
+    document.getElementById('detailview-single-card').classList.add('d-none')  
+}
+
 function removeDarkOverlay(){
-  
     document.getElementById('dark-overlay').classList.remove('dark-overlay-styling')
-    document.getElementById('detailview-single-card').classList.add('d-none')
 }
 
 
 function renderAboutSection(){
+    document.getElementById('status-large-card-id').classList.remove('bold-underline')
+document.getElementById('about-large-card-id').classList.add('bold-underline')
+let aboutSection = document.getElementById('lower-information-large-card')
 
-
+aboutSection.innerHTML = '';
+aboutSection.innerHTML = `
+    <div>
+    <span>Hallo</span>
+    </div>
+`
 }
 
 function renderBaseStats(){
+    document.getElementById('about-large-card-id').classList.remove('bold-underline')
+    document.getElementById('status-large-card-id').classList.add('bold-underline')
+let baseStatsSection = document.getElementById('lower-information-large-card')
+baseStatsSection.innerHTML = '';
 
 }
+

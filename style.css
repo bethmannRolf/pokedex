@@ -26,7 +26,7 @@ footer {
 }
 
 .detailview-single-card-styling {
-    display: flex;
+    /* display: flex; */
     justify-content: center;
     align-items: center;
     position: fixed;
@@ -38,7 +38,7 @@ footer {
     transform: translate(-50%, -50%);
     z-index: 9999; /* Z-index, um sicherzustellen, dass es über anderen Inhalten liegt */
     background-color: white; /* Hintergrundfarbe für Sichtbarkeit */
-    padding: 20px; /* Optional: Fügen Sie etwas Polsterung hinzu, um den Inhalt zu trennen */
+    /* padding: 20px;  */
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5); /* Optional: Schatten für Stil */
 }
 
@@ -56,6 +56,18 @@ footer {
 
 
 
+
+.close-button-large-card-styling{
+    transition: scale 0.3s ease;
+}
+
+.close-button-large-card-styling:hover{
+    
+    cursor: pointer;
+    background-color: rgb(156, 151, 151);
+    border-radius: 50%;
+    scale:110%;
+}
 
 main {
 
@@ -264,4 +276,106 @@ main {
 
 .standard-back{
     z-index: 0;
+}
+
+
+.close-section-large-card{
+    display: flex;
+    justify-content: flex-end;
+    padding-top: 10px;
+    padding-right: 10px;
+}
+
+.pokemon-name-large-card-div{
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.pokemon-name-large-card-styling{
+
+    font-size: 36px;
+}
+
+
+.single-large-card-styling{
+    border-radius: 16px;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.type-div-large-card{
+    margin-top: 40px;
+    display: flex;
+    justify-content: space-around;
+}
+
+.type-span-large-card{
+
+}
+
+.lower-section-large-card{
+    display: flex;
+    /* align-items: center; */
+    flex-direction: column;
+    margin-top: 100px;
+    flex: 1;
+    background-color: white;
+    border-radius: 16px;
+}
+
+.lower-large-card-flex-container{
+    display: flex;
+    justify-content: center;
+}
+
+.image-div-large-card{
+    margin-top: 80px;
+    display: flex;
+    justify-content: center;
+    scale: 300%;
+}
+/* 
+.lower-section-large-card{
+    margin-top: 100px;
+    display: flex;
+    justify-content: center;
+
+} */
+
+.about-div-large-card{
+    padding-right: 100px;
+}
+
+.lower-information-large-card{
+ 
+   
+}
+
+.about-span-styling{
+font-size: 24px;
+user-select: none;
+}
+
+.about-span-styling:hover{
+cursor:pointer;
+scale:110%;
+
+}
+
+
+.stats-span-styling{
+    font-size: 24px;
+      user-select: none;
+}
+
+.stats-span-styling:hover{
+    cursor: pointer;
+    scale: 110%; 
+}
+
+.bold-underline{
+     font-weight: bold;  
+     text-decoration: underline;
 }
