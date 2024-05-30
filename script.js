@@ -1,5 +1,5 @@
 const BASE_URL = 'https://pokeapi.co/api/v2/';
-let url = 'https://pokeapi.co/api/v2/pokemon?limit=20&offset=0';
+let url = 'https://pokeapi.co/api/v2/pokemon?limit=15&offset=0';
 let ditto = 'https://pokeapi.co/api/v2/pokemon/ditto'; // Test
 
 let loadedPokemons = [];
@@ -9,7 +9,7 @@ let pokemonJSON = [];
 // Funktion, die zusätzliche Funktionen beim Laden der Seite ausführt
 async function additionalFunctionsonload() {
     await initContext();
-    loadingPokemonNames();
+    loadSmallPokemonCards();
 }
 
 // Funktion, die den Initialisierungskontext lädt
@@ -24,7 +24,7 @@ function capitalizeFirstLetter(pokemonName) {
 }
 
 // Funktion, die die Pokémon-Namen lädt und anzeigt
-async function loadingPokemonNames() {
+async function loadSmallPokemonCards() {
     let pokemonCards = document.getElementById('main-content');
     pokemonCards.innerHTML = '';
 
@@ -47,7 +47,7 @@ async function loadingPokemonNames() {
             console.log("Pokedetails", pokemonDetails);
 
             pokemonCards.innerHTML += `
-            <div id="smallcard${i}" class="whole-pokemon-card ${firstType}">
+            <div onclick="showLargeCard(${i})" id="smallcard${i}" class="whole-pokemon-card ${firstType}">
                 <div class="upper-div-small-card">
                     <div class="pokemon-name-small-card">
                         <span class="pokemon-name-small-card-span">${pokemonName}</span>
@@ -66,7 +66,7 @@ async function loadingPokemonNames() {
                         </div>
                     </div>
                     <div class="lower-small-card-right">
-                        <img class="pokemon-image-small-card" src="${pokemonImage}">
+                        <img class="pokemon-image-small-card" id="pokemon-image-small-card-for-hover${i}" src="${pokemonImage}">
                     </div>
                 </div>
             </div>
@@ -83,8 +83,38 @@ async function getPokemonDetails(url) {
     return pokemonDetails;
 }
 
-async function renderLargeCards() {
-    // Hier kannst du deinen Code für große Karten hinzufügen
+async function showLargeCard(i) {
+    document.getElementById('detailview-single-card').classList.remove('d-none')
+    document.getElementById('dark-overlay').classList.add('dark-overlay-styling')
+    let pokemonName = loadedPokemons[i].name;
+    pokemonName = capitalizeFirstLetter(pokemonName);
+    let pokemonUrl = loadedPokemons[i].url;
+    let pokemonDetails = await getPokemonDetails(pokemonUrl);
+    let pokemonHeight = pokemonDetails.height;
+
+    let singleLargeCard = document.getElementById('detailview-single-card');
+    singleLargeCard.innerHTML = '';
+
+    singleLargeCard.innerHTML = `
+    <div class="single-large-card-styling">
+
+    
+    </div>
+    `
+}
+
+function removeDarkOverlay(){
+  
+    document.getElementById('dark-overlay').classList.remove('dark-overlay-styling')
+    document.getElementById('detailview-single-card').classList.add('d-none')
 }
 
 
+function renderAboutSection(){
+
+
+}
+
+function renderBaseStats(){
+
+}
