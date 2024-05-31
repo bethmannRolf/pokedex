@@ -32,7 +32,7 @@ async function loadSmallPokemonCards(pokemons = loadedPokemons) {
             let pokemonUrl = pokemons[i].url;
 
             let pokemonDetails = await getPokemonDetails(pokemonUrl);
-
+            console.log("Details", pokemonDetails)
             let pokemonTypes = pokemonDetails.types.map(typeInfo => typeInfo.type.name);
             let firstType = pokemonTypes[0];
 
