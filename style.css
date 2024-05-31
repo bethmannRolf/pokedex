@@ -129,6 +129,7 @@ main {
 }
 
 .whole-pokemon-card {
+    user-select: none;
     margin: 20px;
     width: 280px;
     height: 250px;
@@ -245,6 +246,29 @@ main {
 .fairy {
     background-color: #f1b0ed;
 }
+
+.backwards-button-styling{
+
+}
+
+.backwards-button-styling:hover{
+    cursor: pointer;
+   
+  background-color: #c3c3cf;
+  opacity: 0.2;
+}
+
+.forward-button-styling{
+
+}
+
+.forward-button-styling:hover{
+cursor: pointer;
+
+background-color: #c3c3cf;
+opacity: 0.2;
+}
+
 
 .pokemon-type-small-card {
     background-color: #f1f0f0;
@@ -378,4 +402,13 @@ scale:110%;
 .bold-underline{
      font-weight: bold;  
      text-decoration: underline;
+}
+
+.about-category-span{
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.about-value-span{
+    font-size: 20px;
 }
