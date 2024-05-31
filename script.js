@@ -115,10 +115,10 @@ async function showLargeCard(pokemonName) {
         <div class="lower-section-large-card">
             <div class="lower-large-card-flex-container">
                 <div class="about-div-large-card"> 
-                    <span id="about-large-card-id" onclick="renderAboutSection()" class="about-span-styling">About</span>
+                    <span id="about-large-card-id" onclick="renderAboutSection('${pokemonName}')" class="about-span-styling">About</span>
                 </div>    
                 <div>
-                    <span id="status-large-card-id" onclick="renderBaseStats()" class="stats-span-styling">Stats</span>
+                    <span id="status-large-card-id" onclick="renderBaseStats('${pokemonName}')" class="stats-span-styling">Stats</span>
                 </div>
             </div>
             <div id="lower-information-large-card">  
@@ -150,6 +150,7 @@ function removeDarkOverlay() {
 }
 
 function renderAboutSection() {
+    
     document.getElementById('status-large-card-id').classList.remove('bold-underline')
     document.getElementById('about-large-card-id').classList.add('bold-underline')
     let aboutSection = document.getElementById('lower-information-large-card')
@@ -178,6 +179,7 @@ function renderAboutSection() {
 }
 
 async function renderBaseStats(pokemonName) {
+  
     document.getElementById('about-large-card-id').classList.remove('bold-underline')
     document.getElementById('status-large-card-id').classList.add('bold-underline')
     let baseStatsSection = document.getElementById('lower-information-large-card')
@@ -188,13 +190,20 @@ async function renderBaseStats(pokemonName) {
     </div>
     `;
     let pokemon = filteredPokemons.length > 0
-    ? filteredPokemons.find(p => p.name.toLowerCase() === pokemonName.toLowerCase())
-    : loadedPokemons.find(p => p.name.toLowerCase() === pokemonName.toLowerCase());
+        ? filteredPokemons.find(p => p.name.toLowerCase() === pokemonName.toLowerCase())
+        : loadedPokemons.find(p => p.name.toLowerCase() === pokemonName.toLowerCase());
     if (!pokemon) return;
 
     let pokemonDetails = await getPokemonDetails(pokemon.url);
     let abilities = pokemonDetails.stats.map(stat => stat.base_stat);
-    console.log("abilities")
+    console.log("abilities",  abilities)
+
+    let hp = abilities[0];
+    let attack = abilities[1];
+    let defense = abilities[2];
+    let attackSp = abilities[3];
+    let defenseSp = abilities[4];
+    let speed = abilities[5];
 
     let ctx = document.getElementById('myChart').getContext('2d');
     let myChart = new Chart(ctx, {
@@ -203,7 +212,7 @@ async function renderBaseStats(pokemonName) {
             labels: ['HP', 'Attack', 'Defense', 'Sp. Attack', 'Sp. Defense', 'Speed'],
             datasets: [{
                 label: 'Abillity',
-                data: [100, 75, 150, 50, 42, 56],
+                data: [hp, attack, defense, attackSp, defenseSp, speed],
                 backgroundColor: 'rgba(75, 192, 192, 0.2)',
                 borderColor: 'rgba(75, 192, 192, 1)',
                 borderWidth: 1
@@ -214,9 +223,9 @@ async function renderBaseStats(pokemonName) {
             scales: {
                 x: {
                     min: 0,
-                    max: 200,
+                    max: 150,
                     ticks: {
-                        stepSize: 20
+                        stepSize: 10
                     }
                 }
             }
