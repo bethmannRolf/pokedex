@@ -3,56 +3,51 @@ let url = 'https://pokeapi.co/api/v2/pokemon?limit=15&offset=0';
 
 let loadedPokemons = [];
 let DETAIL_VIEW_OPEN = false;
-let pokemonJSON = [];
-let offset = 0;
-// Funktion, die zusätzliche Funktionen beim Laden der Seite ausführt
+let offset = 0;  // Initialer Offset-Wert
+let filteredPokemons = [];  // Für gefilterte Pokémon
+
 async function additionalFunctionsonload() {
     await initContext();
     loadSmallPokemonCards();
 }
 
-// Funktion, die den Initialisierungskontext lädt
 async function initContext() {
     let response = await fetch(url);
     let responseAsJSON = await response.json();
-    loadedPokemons = responseAsJSON.results;
+    loadedPokemons = loadedPokemons.concat(responseAsJSON.results); // Pokémon zur bestehenden Liste hinzufügen
 }
 
 function capitalizeFirstLetter(pokemonName) {
     return pokemonName.charAt(0).toUpperCase() + pokemonName.slice(1);
 }
 
-// Funktion, die die Pokémon-Namen lädt und anzeigt
-async function loadSmallPokemonCards() {
+async function loadSmallPokemonCards(pokemons = loadedPokemons) {
     let pokemonCards = document.getElementById('main-content');
-    pokemonCards.innerHTML = '';
+    pokemonCards.innerHTML = '';  // Nur einmal leeren, wenn die Seite neu geladen wird
 
-    if (loadedPokemons.length > 0) {
-        for (let i = 0; i < loadedPokemons.length; i++) {
-            let pokemonName = loadedPokemons[i].name;
+    if (pokemons.length > 0) {
+        for (let i = 0; i < pokemons.length; i++) {
+            let pokemonName = pokemons[i].name;
             pokemonName = capitalizeFirstLetter(pokemonName);
-            let pokemonUrl = loadedPokemons[i].url;
+            let pokemonUrl = pokemons[i].url;
 
-            // Daten aus dem bereits geladenen JSON verwenden
             let pokemonDetails = await getPokemonDetails(pokemonUrl);
 
             let pokemonTypes = pokemonDetails.types.map(typeInfo => typeInfo.type.name);
-            let firstType = pokemonTypes[0];  // Der erste Typ des Pokémon
+            let firstType = pokemonTypes[0];
 
             let pokemonHeight = pokemonDetails.height;
             let pokeID = pokemonDetails.id;
             let pokemonImage = pokemonDetails.sprites.front_default;
 
-            console.log("Pokedetails", pokemonDetails);
-
             pokemonCards.innerHTML += `
-            <div onclick="showLargeCard(${i})" id="smallcard${i}" class="whole-pokemon-card ${firstType}">
+            <div onclick="showLargeCard('${pokemonName}')" id="smallcard${i}" class="whole-pokemon-card ${firstType}">
                 <div class="upper-div-small-card">
                     <div class="pokemon-name-small-card">
                         <span class="pokemon-name-small-card-span">${pokemonName}</span>
                     </div>
                     <div class="pokemon-id-small-card">
-                        <span class="pokeID-small-card-span">Poke-ID: ${pokeID} </span>
+                        <span class="pokeID-small-card-span">Poke-ID: ${pokeID}</span>
                     </div>
                 </div>
                 <div class="lower-div-small-card">
@@ -72,7 +67,6 @@ async function loadSmallPokemonCards() {
             `;
         }
     }
-
 }
 
 async function getPokemonDetails(url) {
@@ -81,16 +75,19 @@ async function getPokemonDetails(url) {
     return pokemonDetails;
 }
 
-async function showLargeCard(i) {
-    openLargeCardOverlay()
-    let pokemonName = loadedPokemons[i].name;
-    pokemonName = capitalizeFirstLetter(pokemonName);
-    let pokemonUrl = loadedPokemons[i].url;
+async function showLargeCard(pokemonName) {
+    openLargeCardOverlay();
+
+    let pokemon = filteredPokemons.length > 0 
+        ? filteredPokemons.find(p => p.name.toLowerCase() === pokemonName.toLowerCase())
+        : loadedPokemons.find(p => p.name.toLowerCase() === pokemonName.toLowerCase());
+    if (!pokemon) return;
+
+    let pokemonUrl = pokemon.url;
     let pokemonDetails = await getPokemonDetails(pokemonUrl);
     let pokemonHeight = pokemonDetails.height;
     let pokemonTypes = pokemonDetails.types.map(typeInfo => typeInfo.type.name);
-    let firstType = pokemonTypes[0];  // Der erste Typ des Pokémon
-    console.log("First type large card", firstType)
+    let firstType = pokemonTypes[0];
     let pokeID = pokemonDetails.id;
     let pokemonImage = pokemonDetails.sprites.front_default;
 
@@ -103,7 +100,7 @@ async function showLargeCard(i) {
             <img onclick="closeLargeCard()" class="close-button-large-card-styling" id="close-button-large-card" src="/img/close.svg">
         </div>
         <div class="pokemon-name-large-card-div">
-            <span class="pokemon-name-large-card-styling">${pokemonName}</span>
+            <span class="pokemon-name-large-card-styling">${capitalizeFirstLetter(pokemonName)}</span>
         </div>
         <div class="type-div-large-card">
             <span class="id-span-large-card">Poke-ID: ${pokeID}</span>
@@ -111,9 +108,9 @@ async function showLargeCard(i) {
             <span class="height-span large card">Height: ${pokemonHeight * 10} cm  </span>
         </div>
         <div class="image-div-large-card">
-            <img onclick="showPreviousCard(${i})" class="backwards-button-styling" src="/img/arrow_back.svg">
+            <img onclick="showPreviousCard('${pokemonName}')" class="backwards-button-styling" src="/img/arrow_back.svg">
             <img class="image-large-card" src="${pokemonImage}">
-            <img onclick="showNextCard(${i})" class="forward-button-styling" src="/img/arrow_forward.svg">
+            <img onclick="showNextCard('${pokemonName}')" class="forward-button-styling" src="/img/arrow_forward.svg">
         </div>
         <div class="lower-section-large-card">
             <div class="lower-large-card-flex-container">
@@ -129,21 +126,8 @@ async function showLargeCard(i) {
             </div>
         </div>
     </div>
-    `
+    `;
 }
-
-async function showPreviousCard(i) {
-    if (i > 0) {
-        await showLargeCard(i - 1);
-    }
-}
-
-async function showNextCard(i) {
-    if (i < loadedPokemons.length - 1) {
-        await showLargeCard(i + 1);
-    }
-}
-
 
 function openLargeCardOverlay() {
     if (DETAIL_VIEW_OPEN == false) {
@@ -164,7 +148,6 @@ function closeLargeCard() {
 function removeDarkOverlay() {
     document.getElementById('dark-overlay').classList.remove('dark-overlay-styling')
 }
-
 
 function renderAboutSection() {
     document.getElementById('status-large-card-id').classList.remove('bold-underline')
@@ -187,7 +170,7 @@ function renderAboutSection() {
             <span class="about-value-span"></span>
         </div>
         <div>
-            <span class="about-category-span">Abillities</span>
+            <span class="about-category-span">Abilities</span>
             <span class="about-value-span"></span>
         </div>
     </div>
@@ -204,6 +187,33 @@ function renderBaseStats() {
 <span>Willkommen in den Stats</span>
 <div>
 `
-
 }
 
+async function loadMorePokemon() {
+    offset += 15;
+    url = `https://pokeapi.co/api/v2/pokemon?limit=15&offset=${offset}`;
+    await initContext();
+    loadSmallPokemonCards();
+}
+
+function searchPokemonList() {
+    let input = document.getElementById('input-search-field').value.toLowerCase();
+    filteredPokemons = loadedPokemons.filter(pokemon => pokemon.name.toLowerCase().includes(input));
+    loadSmallPokemonCards(filteredPokemons);
+}
+
+async function showPreviousCard(pokemonName) {
+    let pokemons = filteredPokemons.length > 0 ? filteredPokemons : loadedPokemons;
+    let index = pokemons.findIndex(p => p.name.toLowerCase() === pokemonName.toLowerCase());
+    if (index > 0) {
+        await showLargeCard(pokemons[index - 1].name);
+    }
+}
+
+async function showNextCard(pokemonName) {
+    let pokemons = filteredPokemons.length > 0 ? filteredPokemons : loadedPokemons;
+    let index = pokemons.findIndex(p => p.name.toLowerCase() === pokemonName.toLowerCase());
+    if (index < pokemons.length - 1) {
+        await showLargeCard(pokemons[index + 1].name);
+    }
+}

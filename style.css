@@ -253,9 +253,8 @@ main {
 
 .backwards-button-styling:hover{
     cursor: pointer;
-   
-  background-color: #c3c3cf;
-  opacity: 0.2;
+   scale: 110%;
+
 }
 
 .forward-button-styling{
@@ -264,9 +263,8 @@ main {
 
 .forward-button-styling:hover{
 cursor: pointer;
+scale: 110%;
 
-background-color: #c3c3cf;
-opacity: 0.2;
 }
 
 
