@@ -78,7 +78,7 @@ async function getPokemonDetails(url) {
 async function showLargeCard(pokemonName) {
     openLargeCardOverlay();
 
-    let pokemon = filteredPokemons.length > 0 
+    let pokemon = filteredPokemons.length > 0
         ? filteredPokemons.find(p => p.name.toLowerCase() === pokemonName.toLowerCase())
         : loadedPokemons.find(p => p.name.toLowerCase() === pokemonName.toLowerCase());
     if (!pokemon) return;
@@ -177,17 +177,57 @@ function renderAboutSection() {
 `
 }
 
-function renderBaseStats() {
+async function renderBaseStats(pokemonName) {
     document.getElementById('about-large-card-id').classList.remove('bold-underline')
     document.getElementById('status-large-card-id').classList.add('bold-underline')
     let baseStatsSection = document.getElementById('lower-information-large-card')
     baseStatsSection.innerHTML = '';
     baseStatsSection.innerHTML = `
-<div>
-<span>Willkommen in den Stats</span>
-<div>
-`
+    <div>
+    <canvas id="myChart"></canvas>
+    </div>
+    `;
+    let pokemon = filteredPokemons.length > 0
+    ? filteredPokemons.find(p => p.name.toLowerCase() === pokemonName.toLowerCase())
+    : loadedPokemons.find(p => p.name.toLowerCase() === pokemonName.toLowerCase());
+    if (!pokemon) return;
+
+    let pokemonDetails = await getPokemonDetails(pokemon.url);
+    let abilities = pokemonDetails.stats.map(stat => stat.base_stat);
+    console.log("abilities")
+
+    let ctx = document.getElementById('myChart').getContext('2d');
+    let myChart = new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: ['HP', 'Attack', 'Defense', 'Sp. Attack', 'Sp. Defense', 'Speed'],
+            datasets: [{
+                label: 'Abillity',
+                data: [100, 75, 150, 50, 42, 56],
+                backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                borderColor: 'rgba(75, 192, 192, 1)',
+                borderWidth: 1
+            }]
+        },
+        options: {
+            indexAxis: 'y',
+            scales: {
+                x: {
+                    min: 0,
+                    max: 200,
+                    ticks: {
+                        stepSize: 20
+                    }
+                }
+            }
+        }
+    });
 }
+
+
+
+
+
 
 async function loadMorePokemon() {
     offset += 15;
