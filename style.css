@@ -410,3 +410,15 @@ scale:110%;
 .about-value-span{
     font-size: 20px;
 }
+
+.rendered-about-section{
+    margin-top: 16px;
+    display: flex;
+    flex-direction: column;
+    
+}
+
+.about-category-div{
+    margin: 8px;
+    margin-left: 48px;
+}

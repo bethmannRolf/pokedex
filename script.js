@@ -158,20 +158,28 @@ function renderAboutSection() {
     aboutSection.innerHTML = '';
     aboutSection.innerHTML = `
     <div class="rendered-about-section">
-        <div>
-            <span class="about-category-span">Weight</span>
+        <div class="about-category-div">
+            <span class="about-category-span">Weight:</span>
             <span class="about-value-span"></span>
         </div>
-        <div>
-            <span class="about-category-span">Height</span>
+        <div class="about-category-div">
+            <span class="about-category-span">Poke-ID:</span>
             <span class="about-value-span"></span>
         </div>
-        <div>
-            <span class="about-category-span">Base Experience</span>
+        <div class="about-category-div">
+            <span class="about-category-span">Type:</span>
             <span class="about-value-span"></span>
         </div>
-        <div>
-            <span class="about-category-span">Abilities</span>
+        <div class="about-category-div">
+            <span class="about-category-span">Height:</span>
+            <span class="about-value-span"></span>
+        </div>
+        <div class="about-category-div">
+            <span class="about-category-span">Base Experience:</span>
+            <span class="about-value-span"></span>
+        </div>
+        <div class="about-category-div">
+            <span class="about-category-span">Abilities:</span>
             <span class="about-value-span"></span>
         </div>
     </div>
@@ -232,11 +240,6 @@ async function renderBaseStats(pokemonName) {
         }
     });
 }
-
-
-
-
-
 
 async function loadMorePokemon() {
     offset += 15;
