@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,13 +11,21 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="script.js"></script>
 </head>
+
 <body onload="additionalFunctionsonload()">
     <header>
-        <header >
-            <input onkeyup="searchPokemonList()" id="input-search-field" class="input-search-styling" type="text" placeholder="Search . . .">        </header>
+        <div>
+            <img src="/img/sandamer_left.png" height="128px">
+        </div>
+
+        <div class="glumande-and-search">
+            <img src="/img/glumanda_left.png" width="64px" height="64px">
+            <input onkeyup="searchPokemonList()" id="input-search-field" class="input-search-styling" type="text"
+                placeholder="Search Pokemon . . .">
+        </div>
     </header>
     <main id="main-content">
-       
+
     </main>
     <footer>
         <div onclick="loadMorePokemon()" id="load-more-pokemon-button" class="load-more-button">
@@ -24,11 +33,11 @@
         </div>
     </footer>
 
-    <div  id="detailview-single-card" class="detailview-single-card-styling d-none" >
+    <div id="detailview-single-card" class="detailview-single-card-styling d-none">
 
     </div>
     <div onclick="closeLargeCard()" id="dark-overlay" class="standard-back"></div>
-    
-</body>
-</html>
 
+</body>
+
+</html>
