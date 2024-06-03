@@ -438,8 +438,15 @@ main {
         display: block !important;
     }
 
+    .previous-pokemon-responsive:hover {
+       cursor: pointer;
+    }
+
     .next-pokemon-responsive {
         display: block !important;
+    }
+    .next-pokemon-responsive:hover {
+       cursor: pointer;
     }
 
     .backwards-button-styling {
