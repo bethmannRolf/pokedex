@@ -81,6 +81,7 @@ main {
     justify-content: center;
     flex-wrap: wrap;
     overflow-y: scroll;
+  
 }
 
 .input-search-styling::placeholder {
@@ -408,17 +409,17 @@ scale:110%;
 }
 
 .about-value-span{
+    margin-left: 20px;
     font-size: 20px;
 }
 
 .rendered-about-section{
     margin-top: 16px;
-    display: flex;
-    flex-direction: column;
-    
+    display: flex;  
 }
 
 .about-category-div{
     margin: 8px;
     margin-left: 48px;
 }
+

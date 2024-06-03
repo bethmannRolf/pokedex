@@ -129,6 +129,8 @@ async function showLargeCard(pokemonName) {
     `;
 }
 
+
+
 function openLargeCardOverlay() {
     if (DETAIL_VIEW_OPEN == false) {
         document.getElementById('detailview-single-card').classList.remove('d-none');
@@ -149,8 +151,22 @@ function removeDarkOverlay() {
     document.getElementById('dark-overlay').classList.remove('dark-overlay-styling')
 }
 
-function renderAboutSection() {
-    
+async function renderAboutSection(pokemonName) {
+
+    let pokemon = filteredPokemons.length > 0
+        ? filteredPokemons.find(p => p.name.toLowerCase() === pokemonName.toLowerCase())
+        : loadedPokemons.find(p => p.name.toLowerCase() === pokemonName.toLowerCase());
+    if (!pokemon) return;
+    let pokemonDetails = await getPokemonDetails(pokemon.url);
+    console.log("pokemon Details in About", pokemonDetails)
+    let pokemonWeight = pokemonDetails.weight / 10;
+    let pokemonHeight = pokemonDetails.height/10
+    let pokeID = pokemonDetails.id;
+    let baseExperience = pokemonDetails.base_experience;
+    let pokemonTypes = pokemonDetails.types.map(typeInfo => typeInfo.type.name);
+   
+    let pokemonAbillities = pokemonDetails.abilities.map(abilityInfo => abilityInfo.ability.name);
+ console.log("Pokemon height in About", pokemonAbillities);
     document.getElementById('status-large-card-id').classList.remove('bold-underline')
     document.getElementById('about-large-card-id').classList.add('bold-underline')
     let aboutSection = document.getElementById('lower-information-large-card')
@@ -158,43 +174,47 @@ function renderAboutSection() {
     aboutSection.innerHTML = '';
     aboutSection.innerHTML = `
     <div class="rendered-about-section">
-        <div class="about-category-div">
-            <span class="about-category-span">Weight:</span>
-            <span class="about-value-span"></span>
+        <div class="about-lower-left-side">
+            <div class="about-category-div">
+                <span class="about-category-span">Weight:</span>
+                <span class="about-value-span">${pokemonWeight} kg</span>
+            </div>
+            <div class="about-category-div">
+                <span class="about-category-span">Poke-ID:</span>
+                <span class="about-value-span">${pokeID}</span>
+            </div>
+            <div class="about-category-div">
+                <span class="about-category-span">Type:</span>  
+                <span class="about-value-span">${pokemonTypes.join(', ')}</span>
+            </div>
+            <div class="about-category-div">
+                <span class="about-category-span">Height:</span>
+                <span class="about-value-span">${pokemonHeight} m</span>
+
+            </div>
+            <div class="about-category-div">
+                <span class="about-category-span">Base Experience:</span>
+                <span class="about-value-span">${baseExperience} EP</span>
+            </div>
+            <div class="about-category-div">
+                <span class="about-category-span">Abilities:</span>
+                <span class="about-value-span">${pokemonAbillities.join(', ')}</span>
+            </div>
         </div>
-        <div class="about-category-div">
-            <span class="about-category-span">Poke-ID:</span>
-            <span class="about-value-span"></span>
-        </div>
-        <div class="about-category-div">
-            <span class="about-category-span">Type:</span>
-            <span class="about-value-span"></span>
-        </div>
-        <div class="about-category-div">
-            <span class="about-category-span">Height:</span>
-            <span class="about-value-span"></span>
-        </div>
-        <div class="about-category-div">
-            <span class="about-category-span">Base Experience:</span>
-            <span class="about-value-span"></span>
-        </div>
-        <div class="about-category-div">
-            <span class="about-category-span">Abilities:</span>
-            <span class="about-value-span"></span>
-        </div>
+
     </div>
 `
 }
 
 async function renderBaseStats(pokemonName) {
-  
+
     document.getElementById('about-large-card-id').classList.remove('bold-underline')
     document.getElementById('status-large-card-id').classList.add('bold-underline')
     let baseStatsSection = document.getElementById('lower-information-large-card')
     baseStatsSection.innerHTML = '';
     baseStatsSection.innerHTML = `
     <div>
-    <canvas id="myChart"></canvas>
+    <canvas id="pokemon-chart"></canvas>
     </div>
     `;
     let pokemon = filteredPokemons.length > 0
@@ -204,7 +224,7 @@ async function renderBaseStats(pokemonName) {
 
     let pokemonDetails = await getPokemonDetails(pokemon.url);
     let abilities = pokemonDetails.stats.map(stat => stat.base_stat);
-    console.log("abilities",  abilities)
+    console.log("abilities", abilities)
 
     let hp = abilities[0];
     let attack = abilities[1];
@@ -213,7 +233,7 @@ async function renderBaseStats(pokemonName) {
     let defenseSp = abilities[4];
     let speed = abilities[5];
 
-    let ctx = document.getElementById('myChart').getContext('2d');
+    let ctx = document.getElementById('pokemon-chart').getContext('2d');
     let myChart = new Chart(ctx, {
         type: 'bar',
         data: {
