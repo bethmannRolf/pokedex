@@ -1,48 +1,51 @@
 body {
     font-family: 'Lato';
-    margin: 0; 
+    margin: 0;
 }
 
 body::-webkit-scrollbar {
-    width: 12px; 
+    width: 12px;
 }
 
 body::-webkit-scrollbar-thumb {
-    background-color: #888;  /* Farbe der Scrollbar */
-    border-radius: 10px;  /* Border-Radius */
-    border: 2px solid #271bd3;  /* Rand um den Scrollbar-Thumb */
+    background-color: #888;
+    border-radius: 10px;
+    border: 2px solid #271bd3;
 }
 
 body::-webkit-scrollbar-track {
-    background: #a2aa56;  /* Hintergrund der Scrollbar */
+    background: #a2aa56;
 }
 
-
-.d-none{
+.d-none {
     display: none !important;
 }
 
+.header-image-sandamer {
+    margin-left: 10px;
+}
+
 header {
-    
+
     width: 100%;
     height: 200px;
     display: flex;
     justify-content: space-between;
-    /* justify-content: center; */
     align-items: center;
     background-color: blanchedalmond;
 }
 
-.glumande-and-search{
+.glumande-and-search {
     display: flex;
     width: 60%;
+    justify-content: flex-end;
+    margin-right: 40px;
     align-items: center;
-   
 }
 
 footer {
     width: 100%;
-    height: 200px;
+    height: 150px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -50,7 +53,6 @@ footer {
 }
 
 .detailview-single-card-styling {
-    /* display: flex; */
     justify-content: center;
     align-items: center;
     position: fixed;
@@ -60,48 +62,37 @@ footer {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    z-index: 9999; /* Z-index, um sicherzustellen, dass es über anderen Inhalten liegt */
-    background-color: white; /* Hintergrundfarbe für Sichtbarkeit */
-    /* padding: 20px;  */
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5); /* Optional: Schatten für Stil */
+    z-index: 9999;
+    background-color: white;
+
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
 }
 
-.dark-overlay-styling{
-    display: block; /* Zeige das Overlay an */
+.dark-overlay-styling {
+    display: block;
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.5); /* Semi-transparentes Overlay */
-    z-index: 999; /* Über allen anderen Inhalten außerhalb des Modalfensters */
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 999;
 }
 
-
-
-
-
-.close-button-large-card-styling{
+.close-button-large-card-styling {
     transition: scale 0.3s ease;
 }
 
-.close-button-large-card-styling:hover{
-    
+.close-button-large-card-styling:hover {
     cursor: pointer;
     background-color: rgb(156, 151, 151);
     border-radius: 50%;
-    scale:110%;
+    scale: 110%;
 }
-
-
 
 main::-webkit-scrollbar {
-    width: 0; 
+    width: 0;
 }
-
-
-
-
 
 main {
     scrollbar-width: none;
@@ -116,13 +107,11 @@ main {
     justify-content: center;
     flex-wrap: wrap;
     overflow-y: scroll;
-  
 }
 
 .input-search-styling::placeholder {
     font-weight: bold;
     font-size: 16px;
-
 }
 
 .input-search-styling {
@@ -284,26 +273,15 @@ main {
     background-color: #f1b0ed;
 }
 
-.backwards-button-styling{
-
-}
-
-.backwards-button-styling:hover{
+.backwards-button-styling:hover {
     cursor: pointer;
-   scale: 110%;
-
+    scale: 110%;
 }
 
-.forward-button-styling{
-
+.forward-button-styling:hover {
+    cursor: pointer;
+    scale: 110%;
 }
-
-.forward-button-styling:hover{
-cursor: pointer;
-scale: 110%;
-
-}
-
 
 .pokemon-type-small-card {
     background-color: #f1f0f0;
@@ -333,50 +311,42 @@ scale: 110%;
     transform: scale(1.3);
 }
 
-.standard-back{
+.standard-back {
     z-index: 0;
 }
 
-
-.close-section-large-card{
+.close-section-large-card {
     display: flex;
     justify-content: flex-end;
     padding-top: 10px;
     padding-right: 10px;
 }
 
-.pokemon-name-large-card-div{
+.pokemon-name-large-card-div {
     display: flex;
     justify-content: center;
     margin-top: 20px;
 }
 
-.pokemon-name-large-card-styling{
-
+.pokemon-name-large-card-styling {
     font-size: 36px;
 }
 
-
-.single-large-card-styling{
+.single-large-card-styling {
     border-radius: 16px;
-  display: flex;
-  flex-direction: column;
-  height: 100%;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
 }
 
-.type-div-large-card{
+.type-div-large-card {
     margin-top: 40px;
     display: flex;
     justify-content: space-around;
 }
 
-.type-span-large-card{
-
-}
-
-.lower-section-large-card{
+.lower-section-large-card {
     display: flex;
-    /* align-items: center; */
     flex-direction: column;
     margin-top: 100px;
     flex: 1;
@@ -384,78 +354,125 @@ scale: 110%;
     border-radius: 16px;
 }
 
-.lower-large-card-flex-container{
+.lower-large-card-flex-container {
     display: flex;
     justify-content: center;
 }
 
-.image-div-large-card{
+.image-div-large-card {
     margin-top: 80px;
     display: flex;
     justify-content: center;
     scale: 300%;
 }
-/* 
-.lower-section-large-card{
-    margin-top: 100px;
-    display: flex;
-    justify-content: center;
 
-} */
-
-.about-div-large-card{
+.about-div-large-card {
     padding-right: 100px;
 }
 
-.lower-information-large-card{
- 
-   
-}
-
-.about-span-styling{
-font-size: 24px;
-user-select: none;
-}
-
-.about-span-styling:hover{
-cursor:pointer;
-scale:110%;
-
-}
-
-
-.stats-span-styling{
+.about-span-styling {
     font-size: 24px;
-      user-select: none;
+    user-select: none;
 }
 
-.stats-span-styling:hover{
+.about-span-styling:hover {
     cursor: pointer;
-    scale: 110%; 
+    scale: 110%;
 }
 
-.bold-underline{
-     font-weight: bold;  
-     text-decoration: underline;
+.stats-span-styling {
+    font-size: 24px;
+    user-select: none;
 }
 
-.about-category-span{
+.stats-span-styling:hover {
+    cursor: pointer;
+    scale: 110%;
+}
+
+.bold-underline {
+    font-weight: bold;
+    text-decoration: underline;
+}
+
+.about-category-span {
     font-size: 20px;
     font-weight: bold;
 }
 
-.about-value-span{
+.about-value-span {
     margin-left: 20px;
     font-size: 20px;
 }
 
-.rendered-about-section{
-    margin-top: 16px;
-    display: flex;  
+.rendered-about-section {
+    margin-top: 32px;
+    display: flex;
 }
 
-.about-category-div{
+.about-category-div {
     margin: 8px;
     margin-left: 48px;
 }
 
+.header-image-and-title {
+    display: contents;
+}
+
+.title-span-header {
+    margin-left: 10px;
+    font-weight: bold;
+    font-size: 48px;
+}
+
+@media(max-width:620px) {
+
+    .detailview-single-card-styling {
+        width: 300px;
+        height: 460px;
+        top: 40%;
+        border-radius: 16px;
+    }
+
+    .previous-pokemon-responsive {
+        display: block !important;
+    }
+
+    .next-pokemon-responsive {
+        display: block !important;
+    }
+
+    .backwards-button-styling {
+        display: none;
+    }
+
+    .forward-button-styling {
+        display: none;
+    }
+
+    .type-div-large-card {
+        text-align: center;
+    }
+
+    .header-image-sandamer {
+        display: none;
+    }
+}
+
+@media(max-width:470px) {
+
+    header {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .title-span-header {
+        padding-top: 20px;
+    }
+
+    .glumande-and-search {
+        padding-bottom: 10px;
+        width: 100%;
+        justify-content: center;
+    }
+}

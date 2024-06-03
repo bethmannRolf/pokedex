@@ -8,36 +8,35 @@
     <link rel="stylesheet" href="fonts.css">
     <link rel="icon" type="image/png" href="./img/pokeball.png">
     <link rel="stylesheet" href="style.css">
+    <script src="/chart.js"></script>
+    <script src="templates.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="script.js"></script>
 </head>
 
 <body onload="additionalFunctionsonload()">
     <header>
-        <div>
-            <img src="/img/sandamer_left.png" height="128px">
+        <div class="header-image-and-title">
+            <img class="header-image-sandamer" src="/img/sandamer_left.png" height="128px">
+            <span class="title-span-header">Pokédex</span>
         </div>
-
         <div class="glumande-and-search">
             <img src="/img/glumanda_left.png" width="64px" height="64px">
             <input onkeyup="searchPokemonList()" id="input-search-field" class="input-search-styling" type="text"
-                placeholder="Search Pokemon . . .">
+                placeholder="Search Pokémon . . .">
         </div>
     </header>
     <main id="main-content">
-
     </main>
     <footer>
         <div onclick="loadMorePokemon()" id="load-more-pokemon-button" class="load-more-button">
             <span class="load-more-pokemon-span">Load More Pokemon</span>
         </div>
     </footer>
-
     <div id="detailview-single-card" class="detailview-single-card-styling d-none">
 
     </div>
     <div onclick="closeLargeCard()" id="dark-overlay" class="standard-back"></div>
-
 </body>
 
 </html>
