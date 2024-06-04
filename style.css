@@ -493,18 +493,6 @@ footer {
     cursor: not-allowed;
 }
 
-/* Der Rest deines CSS bleibt unverändert */
-
-
-
-
-
-
-
-
-
-
-/*  */
 @media(max-width:620px) {
 
     .detailview-single-card-styling {
@@ -562,4 +550,31 @@ footer {
         width: 100%;
         justify-content: center;
     }
+}
+
+@media(max-width:400px) {
+
+
+    .about-category-span{
+        font-size: 16px;
+    }
+
+    .about-value-span{
+        font-size: 14px;
+    }
+
+    .rendered-about-section {
+        margin-top: 8px;
+        display: flex;
+    }
+
+    .detailview-single-card-styling {
+        top: 35%;
+
+    }
+    .about-category-div {
+        margin: 4px;
+        margin-left: 48px;
+    }
+
 }
