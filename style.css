@@ -3,6 +3,11 @@ body {
     margin: 0;
 }
 
+
+
+
+
+
 body::-webkit-scrollbar {
     width: 12px;
 }
@@ -45,7 +50,7 @@ header {
 
 footer {
     width: 100%;
-    height: 150px;
+    height: 100px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -434,6 +439,94 @@ main {
     font-size: 48px;
 }
 
+/*  */
+body {
+    font-family: 'Lato';
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.wrapper {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+header {
+    width: 100%;
+    height: 200px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: blanchedalmond;
+}
+
+main {
+    flex: 1;
+    background-image: url("./img/pokemon_logo.jpg");
+    background-size: cover;
+    background-repeat: repeat-y;
+    background-position: center;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    overflow-y: auto;
+}
+
+footer {
+    width: 100%;
+    height: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(214, 143, 102);
+    position: fixed;
+    bottom: 0;
+}
+
+.input-search-styling::placeholder {
+    font-weight: bold;
+    font-size: 16px;
+}
+
+.input-search-styling {
+    height: 20px;
+    padding-top: 8px;
+    padding-right: 8px;
+    padding-left: 6px;
+    padding-bottom: 8px;
+    border-radius: 4px;
+}
+
+.load-more-button {
+    padding-top: 8px;
+    padding-right: 16px;
+    padding-bottom: 8px;
+    padding-left: 16px;
+    border: 1px solid black;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.load-more-button.disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+/* Der Rest deines CSS bleibt unverändert */
+
+
+
+
+
+
+
+
+
+
+/*  */
 @media(max-width:620px) {
 
     .detailview-single-card-styling {
