@@ -136,6 +136,13 @@ function findPokemon(pokemonName) {
         : loadedPokemons.find(p => p.name.toLowerCase() === lowerCaseName);
 }
 
+/**
+ * Renders a large card view for a single Pokémon.
+ * @function renderLargeCard
+ * @param {string} pokemonName - The name of the Pokémon.
+ * @param {Object} pokemonDetails - Details of the Pokémon.
+ * @returns {Promise<void>} A promise that resolves once the large card is rendered.
+ */
 async function renderLargeCard(pokemonName, pokemonDetails) {
     let { height, types, id, sprites } = pokemonDetails;
     let formattedPokemonName = capitalizeFirstLetter(pokemonName);
@@ -161,6 +168,7 @@ async function renderLargeCard(pokemonName, pokemonDetails) {
  */
 function openLargeCardOverlay() {
     if (DETAIL_VIEW_OPEN == false) {
+        openDetailView()
         document.getElementById('detailview-single-card').classList.remove('d-none');
         document.getElementById('dark-overlay').classList.add('dark-overlay-styling');
     }
@@ -174,10 +182,31 @@ function openLargeCardOverlay() {
  */
 function closeLargeCard() {
     if (DETAIL_VIEW_OPEN == true) {
+        closeDetailView()
         removeDarkOverlay()
         document.getElementById('detailview-single-card').classList.add('d-none');
     }
     DETAIL_VIEW_OPEN = false;
+}
+
+/**
+ * Opens the detail view for a single Pokémon card.
+ * @function openDetailView
+ * @returns {void} This function does not return a value.
+ */
+function openDetailView() {
+    document.getElementById('detailview-single-card').classList.remove('d-none');
+    document.body.classList.add('no-scroll');
+}
+
+/**
+ * Closes the detail view for a single Pokémon card.
+ * @function closeDetailView
+ * @returns {void} This function does not return a value.
+ */
+function closeDetailView() {
+    document.getElementById('detailview-single-card').classList.add('d-none');
+    document.body.classList.remove('no-scroll');
 }
 
 /**
@@ -318,6 +347,27 @@ async function loadMorePokemon() {
     loadMoreButton.onclick = loadMorePokemon;
 }
 
+/**
+ * Disables the "Load More Pokémon" button.
+ * @function disableLoadMoreButton
+ * @returns {void} This function does not return a value.
+ */
+function disableLoadMoreButton() {
+    const loadMoreButton = document.getElementById('load-more-pokemon-button');
+    loadMoreButton.classList.add('disabled');
+    loadMoreButton.onclick = null;
+}
+
+/**
+ * Enables the "Load More Pokémon" button.
+ * @function enableLoadMoreButton
+ * @returns {void} This function does not return a value.
+ */
+function enableLoadMoreButton() {
+    const loadMoreButton = document.getElementById('load-more-pokemon-button');
+    loadMoreButton.classList.remove('disabled');
+    loadMoreButton.onclick = loadMorePokemon;
+}
 
 /**
  * Searches the Pokémon list based on user input.
@@ -328,6 +378,12 @@ function searchPokemonList() {
     let input = document.getElementById('input-search-field').value.toLowerCase();
     filteredPokemons = loadedPokemons.filter(pokemon => pokemon.name.toLowerCase().includes(input));
     loadSmallPokemonCards(filteredPokemons);
+
+    if (input) {
+        disableLoadMoreButton();
+    } else {
+        enableLoadMoreButton();
+    }
 }
 
 /**
