@@ -3,11 +3,6 @@ body {
     margin: 0;
 }
 
-
-
-
-
-
 body::-webkit-scrollbar {
     width: 12px;
 }
@@ -31,7 +26,6 @@ body::-webkit-scrollbar-track {
 }
 
 header {
-
     width: 100%;
     height: 200px;
     display: flex;
@@ -95,24 +89,8 @@ footer {
     scale: 110%;
 }
 
-main::-webkit-scrollbar {
-    width: 0;
-}
 
-main {
-    scrollbar-width: none;
-    -ms-overflow-style: none;
-    background-image: url("./img/pokemon_logo.jpg");
-    background-size: cover;
-    background-repeat: repeat-y;
-    background-position: center;
-    height: 850px;
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-    overflow-y: scroll;
-}
+
 
 .input-search-styling::placeholder {
     font-weight: bold;
@@ -472,7 +450,7 @@ main {
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
-    overflow-y: auto;
+    overflow-y: unset;
 }
 
 footer {
