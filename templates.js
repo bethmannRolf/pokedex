@@ -54,12 +54,12 @@ async function largeCardTemplate(firstType, pokemonName, formattedPokemonName, p
     return`
     <div class="single-large-card-styling ${firstType}">
         <div class="close-section-large-card">
-            <img onclick="closeLargeCard()" class="close-button-large-card-styling" id="close-button-large-card" src="/img/close.svg">
+            <img onclick="closeLargeCard()" class="close-button-large-card-styling" id="close-button-large-card" src="./img/close.svg">
         </div>
         <div class="pokemon-name-large-card-div">
-            <img onclick="showPreviousCard('${pokemonName}')" class="previous-pokemon-responsive d-none" src="/img/arrow_back.svg" >
+            <img onclick="showPreviousCard('${pokemonName}')" class="previous-pokemon-responsive d-none" src="./img/arrow_back.svg" >
             <span class="pokemon-name-large-card-styling">${formattedPokemonName}</span>
-            <img onclick="showNextCard('${pokemonName}')" class="next-pokemon-responsive d-none" src="/img/arrow_forward.svg">
+            <img onclick="showNextCard('${pokemonName}')" class="next-pokemon-responsive d-none" src="./img/arrow_forward.svg">
         </div>
         <div class="type-div-large-card">
             <span class="id-span-large-card">Poke-ID: ${pokeID}</span>
@@ -67,9 +67,9 @@ async function largeCardTemplate(firstType, pokemonName, formattedPokemonName, p
             <span class="height-span large card">Height: ${pokemonHeight} cm  </span>
         </div>
         <div class="image-div-large-card">
-            <img onclick="showPreviousCard('${pokemonName}')" class="backwards-button-styling" src="/img/arrow_back.svg">
+            <img onclick="showPreviousCard('${pokemonName}')" class="backwards-button-styling" src="./img/arrow_back.svg">
             <img class="image-large-card" src="${pokemonImage}">
-            <img onclick="showNextCard('${pokemonName}')" class="forward-button-styling" src="/img/arrow_forward.svg">
+            <img onclick="showNextCard('${pokemonName}')" class="forward-button-styling" src="./img/arrow_forward.svg">
         </div>
         <div class="lower-section-large-card">
             <div class="lower-large-card-flex-container">

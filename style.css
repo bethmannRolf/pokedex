@@ -97,7 +97,7 @@ main::-webkit-scrollbar {
 main {
     scrollbar-width: none;
     -ms-overflow-style: none;
-    background-image: url("/img/pokemon_logo.jpg");
+    background-image: url("./img/pokemon_logo.jpg");
     background-size: cover;
     background-repeat: repeat-y;
     background-position: center;
@@ -130,7 +130,16 @@ main {
     padding-left: 16px;
     border: 1px solid black;
     border-radius: 8px;
+    cursor: pointer; 
 }
+
+.load-more-button.disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+
+
 
 .load-more-pokemon-span {
     font-size: 16px;

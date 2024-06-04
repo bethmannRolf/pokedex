@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="fonts.css">
     <link rel="icon" type="image/png" href="./img/pokeball.png">
     <link rel="stylesheet" href="style.css">
-    <script src="/chart.js"></script>
+    <script src="./chart.js"></script>
     <script src="templates.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="script.js"></script>
@@ -17,11 +17,11 @@
 <body onload="additionalFunctionsonload()">
     <header>
         <div class="header-image-and-title">
-            <img class="header-image-sandamer" src="/img/sandamer_left.png" height="128px">
+            <img class="header-image-sandamer" src="./img/sandamer_left.png" height="128px">
             <span class="title-span-header">Pokédex</span>
         </div>
         <div class="glumande-and-search">
-            <img src="/img/glumanda_left.png" width="64px" height="64px">
+            <img src="./img/glumanda_left.png" width="64px" height="64px">
             <input onkeyup="searchPokemonList()" id="input-search-field" class="input-search-styling" type="text"
                 placeholder="Search Pokémon . . .">
         </div>
@@ -29,9 +29,10 @@
     <main id="main-content">
     </main>
     <footer>
-        <div onclick="loadMorePokemon()" id="load-more-pokemon-button" class="load-more-button">
+        <button onclick="loadMorePokemon()" id="load-more-pokemon-button" class="load-more-button" enabled>
             <span class="load-more-pokemon-span">Load More Pokemon</span>
-        </div>
+        </button>
+        
     </footer>
     <div id="detailview-single-card" class="detailview-single-card-styling d-none">
 

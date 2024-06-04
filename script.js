@@ -306,17 +306,18 @@ function extractAbilities(pokemonDetails) {
     return pokemonDetails.stats.map(stat => stat.base_stat);
 }
 
-/**
- * Loads more Pokémon from the API.
- * @function loadMorePokemon
- * @returns {Promise<void>} A promise that resolves once more Pokémon are loaded.
- */
 async function loadMorePokemon() {
+    const loadMoreButton = document.getElementById('load-more-pokemon-button');
+    loadMoreButton.classList.add('disabled');
+    loadMoreButton.onclick = null;
     offset += 20;
     url = `https://pokeapi.co/api/v2/pokemon?limit=15&offset=${offset}`;
     await initContext();
-    loadSmallPokemonCards();
+    await loadSmallPokemonCards();
+    loadMoreButton.classList.remove('disabled');
+    loadMoreButton.onclick = loadMorePokemon;
 }
+
 
 /**
  * Searches the Pokémon list based on user input.
